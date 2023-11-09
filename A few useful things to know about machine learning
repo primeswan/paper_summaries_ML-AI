@@ -1,0 +1,100 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=red]{hyperref}
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+\usepackage{enumitem}
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{\href{https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf}{A few useful things to know about machine learning}}
+%\author{The Author}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Summary}
+\begin{enumerate}[start = 0]
+\item This article summarizes 12 key lessons that machine learning researchers and practitioners have learned. These include pitfalls to avoid, important issues to focus on, and answers to common questions.
+
+\item Learning = Representation + Evaluation + Optimization. \\ 
+{\bf Representation} is formal representation of the model that specifies a functional form of what is to be learnt.  This is the {\it hypothesis space}.\\
+{\bf Evaluation} is the scoring metric that helps distinguish bad learners from good ones. \\
+{\bf Optimization} is the method to search for specific function that optimizes the evaluation metric.\\
+The article lists options for each of these components to build a classification learner.
+
+\item It is generalization that counts. Generalization of results beyong training set is a fundamental goal in machine learning. Since we do not know what function to optimize (as we don't have all the data - input space),  we use training set errors as a proxy for test set errors.
+
+\item Data alone is not enough. Since real world data is not drawn uniformly from the input data we can make some assumptions about the model (Representation above). The assumptions are based on knowledge beyond training data. Machine learning differs from traditional programming in that programs are not built from scratch but knowledge and data are combined to form learners.
+
+\item Overfitting has many faces.  Encoding random quirks in the data is overfitting. This can be decomposed into two parts - high bias is when learner learns wrong thing consistently and high variance is when learner learns random things despite the real signal. Achieving one of these is easy but not both. Cross-validation, significance tests, and regularization can help.
+
+\item Intuition fails in higher dimensions.  Input space increases exponentially with new features. Also algorithms which work in lower dimensions may not work in higher dimensions.  However, the examples are usually concentrated in a lower dimensional manifold,that is the positive side of it.
+
+\item Theoretical guarantees are not what they seem.  One type of theoretical guarantee is that probability of a classifier or algorithm being `bad' is less than $\delta$ if number of examples is greater than some number.  It is important to carefuly interpret what a theoretical guarantee says exactly.  The main role of theoretical guarantees in machine learning is not as a criterion for practical decisions, but as a source of understanding and driving force for learner design.
+
+\item Feature engineering is the key. Feature engineering is the most important thing that differentiates succesful machine learning projects from that are not. Machine learning is an iterative process, and feature engineering is the most difficult process in this as sometimes combination of features can be important.
+
+\item More data beats a cleverer algorithm.  Fixed size learners cannot take advantage of more data where as variable size learners like Decision Tree can do so. More data has other issues like computation and memory usage.
+
+\item Learn many models, not just one. Practically, it seems learning with many models works better than learning with just the best model. Bagging, boosting and stacking are some of the techniques used to combine methods.
+
+\item Simplicity does not imply accuracy. Fewer parameters or small hypothesis space does not necessarily imply more accurate learner. It can be a goal in itself though.
+
+\item Representable does not imply learnable.  A decision tree cannot have more leaves than training examples. Similar examples exist in other learners which show that a representable function is not necessarily learnable.
+
+\item Correlation does not imply causation.  Correlation is only a sign of potential causal link.
+\end{enumerate}
+
+\section{Criticism}
+None, as this is only a review article.
+\end{document}
